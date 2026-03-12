@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
+import VoiceMicButton from "@/components/VoiceMicButton";
 
 const formSchema = z.object({
   startTime: z.string().min(1, "Required"),
@@ -32,6 +33,7 @@ export default function SessionForm({ habitId, initialStartTime, initialEndTime,
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -100,12 +102,17 @@ export default function SessionForm({ habitId, initialStartTime, initialEndTime,
       )}
 
       <div>
-        <textarea
-          {...register("notes")}
-          rows={2}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
-          placeholder="Notes (optional)"
-        />
+        <div className="relative">
+          <textarea
+            {...register("notes")}
+            rows={2}
+            className="w-full px-3 py-2 pr-9 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+            placeholder="Notes (optional)"
+          />
+          <div className="absolute right-2 top-2">
+            <VoiceMicButton onResult={(text) => setValue("notes", text)} />
+          </div>
+        </div>
       </div>
 
       <div className="flex gap-2">
