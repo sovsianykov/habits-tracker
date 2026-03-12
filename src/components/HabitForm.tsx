@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { habitSchema, HabitInput } from "@/lib/validations";
-import VoiceMicButton from "@/components/VoiceMicButton";
 
 const HABIT_TEMPLATES = [
   { title: "Пойти за водой", description: "Принести воду" },
@@ -83,30 +82,20 @@ export default function HabitForm({ habit, onClose }: Props) {
         </div>
       )}
       <div>
-        <div className="relative">
-          <input
-            {...register("title")}
-            className="w-full px-3 py-2 pr-9 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            placeholder="Habit name (e.g. Reading)"
-          />
-          <div className="absolute right-2 top-1/2 -translate-y-1/2">
-            <VoiceMicButton onResult={(text) => setValue("title", text)} />
-          </div>
-        </div>
+        <input
+          {...register("title")}
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          placeholder="Habit name (e.g. Reading)"
+        />
         {errors.title && <p className="text-xs text-red-500 mt-1">{errors.title.message}</p>}
       </div>
       <div>
-        <div className="relative">
-          <textarea
-            {...register("description")}
-            rows={2}
-            className="w-full px-3 py-2 pr-9 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
-            placeholder="Description (optional)"
-          />
-          <div className="absolute right-2 top-2">
-            <VoiceMicButton onResult={(text) => setValue("description", text)} />
-          </div>
-        </div>
+        <textarea
+          {...register("description")}
+          rows={2}
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+          placeholder="Description (optional)"
+        />
       </div>
       <div className="flex gap-2">
         {onClose && (
