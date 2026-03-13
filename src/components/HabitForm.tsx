@@ -72,6 +72,7 @@ export default function HabitForm({ habit, onClose }: Props) {
               <button
                 key={t.title}
                 type="button"
+                onPointerDown={(e) => { e.preventDefault(); applyTemplate(t); }}
                 onClick={() => applyTemplate(t)}
                 className="text-xs px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-full hover:bg-indigo-100 transition-colors border border-indigo-200"
               >

@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
@@ -32,6 +32,7 @@ export default function SessionForm({ habitId, initialStartTime, initialEndTime,
     register,
     handleSubmit,
     watch,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -77,19 +78,33 @@ export default function SessionForm({ habitId, initialStartTime, initialEndTime,
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label className="block text-xs font-medium text-gray-600 mb-1">Start time</label>
-          <input
-            {...register("startTime")}
-            type="datetime-local"
-            className="w-full px-2 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          <Controller
+            control={control}
+            name="startTime"
+            render={({ field }) => (
+              <input
+                type="datetime-local"
+                value={field.value}
+                onChange={(e) => field.onChange(e.target.value)}
+                className="w-full px-2 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+            )}
           />
           {errors.startTime && <p className="text-xs text-red-500 mt-1">{errors.startTime.message}</p>}
         </div>
         <div>
           <label className="block text-xs font-medium text-gray-600 mb-1">End time</label>
-          <input
-            {...register("endTime")}
-            type="datetime-local"
-            className="w-full px-2 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          <Controller
+            control={control}
+            name="endTime"
+            render={({ field }) => (
+              <input
+                type="datetime-local"
+                value={field.value}
+                onChange={(e) => field.onChange(e.target.value)}
+                className="w-full px-2 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+            )}
           />
           {errors.endTime && <p className="text-xs text-red-500 mt-1">{errors.endTime.message}</p>}
         </div>
