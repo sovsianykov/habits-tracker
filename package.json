@@ -18,6 +18,7 @@
     "framer-motion": "^12.35.2",
     "next": "16.1.6",
     "next-auth": "^4.24.13",
+    "next-pwa": "^5.6.0",
     "pg": "^8.20.0",
     "react": "19.2.3",
     "react-circular-progressbar": "^2.2.0",
