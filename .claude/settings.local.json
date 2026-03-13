@@ -8,7 +8,13 @@
       "Bash(node:*)",
       "Bash(ls:*)",
       "Bash(npm run:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "mcp__neon__list_projects",
+      "mcp__neon__run_sql"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "neon"
+  ]
 }
